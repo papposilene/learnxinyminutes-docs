@@ -10,36 +10,34 @@ COBOL est un langage orienté business, ayant connu de nombreuses révisions dep
       *COBOL. Coding like it's 1985. 
       *Compiles with GnuCOBOL in OpenCobolIDE 4.7.6.
        
-      *COBOL has significant differences between legacy (COBOL-85)
-      *and modern (COBOL-2002 and COBOL-2014) versions.
-      *Legacy versions require columns 1-6 to be blank (they are used
-      *to store the index number of the punched card..)
-      *A '*' in column 7 means a comment.
-      *In legacy COBOL, a comment can only be a full line.
-      *Modern COBOL doesn't require fixed columns and uses *> for
-      *a comment, which can appear in the middle of a line.
-      *Legacy COBOL also imposes a limit on maximum line length.
-      *Keywords have to be in capitals in legacy COBOL,
-      *but are case insensitive in modern.
-      *Although modern COBOL allows you to use mixed-case characters
-      *it is still common to use all caps when writing COBOL code.
-      *This is what most professional COBOL developers do.
-      *COBOL statements end with a period.
+      *COBOL connait de nombreuses différences entre la version d'origine (COBOl-85)
+      *et les versions plus récentes (COBOL-2002 et COBOL-2014.
+      *La version d'origine requiert que les colonnes 1-6 soient vides (pour leur utilisation 
+      *comme index sur les cartes perforées d'origine...)
+      *Un '*' sur la colonne 7 indique un commentaire.
+      *Dans le COBOL original, un ne peut être que sur une seule ligne.
+      *Le COBOL récent ne requiert plus de colonnes fixes et utilise *> pour 
+      *les commentaires, qui peuvent maintenant être placés au milieu d'une ligne.
+      *Le COBOL d'origine impose également une longueur avec une limite maximale.
+      *Les mots-clés doivent être en lettres capitales dans le COBOL d'origine, 
+      *mais sont insensibles à la casse dans les versions récentes.
+      *Bien que les versions récentes autorise des caractères à la casse mixte, 
+      *il est toujours d'usage d'écrire en lettres capitales quand il s'agit de COBOL.
+      *Les déclarations, en COBOL, se terminent toujours par un point.
       
-      *COBOL code is broken up into 4 divisions.
-      *Those divisions, in order, are:
+      *Le code COBOL est divisé en quatre parties distinctes, à savoir :
       *IDENTIFICATION DIVISION.
       *ENVIRONMENT DIVISION.
       *DATA DIVISION.
       *PROCEDURE DIVISION.
 
-      *First, we must give our program an ID.
-      *Identification division can include other values too,
-      *but they are comments only. Program-id is the only one that is mandatory.
+      *Premièrement, il faut donner un ID au programme.
+      *La division Identification peut également inclure d'autres valeurs,
+      *mais elles ne constitueront que des commentaires. Program-id est le seul paramètre obligatoire.
        IDENTIFICATION DIVISION.
            PROGRAM-ID.    LEARN.
            AUTHOR.        JOHN DOE.
-           DATE-WRITTEN.  05/02/2020.
+           DATE-WRITTEN.  06/01/2021.
 
       *Let's declare some variables.
       *We do this in the WORKING-STORAGE section within the DATA DIVISION.
