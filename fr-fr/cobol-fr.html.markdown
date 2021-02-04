@@ -47,7 +47,7 @@ COBOL est un langage orienté business, ayant connu de nombreuses révisions dep
       *Almost every COBOL programmer will abbreviate PICTURE as PIC.
       *A is for alphabetic, X is for alphanumeric, and 9 is for numeric.
        
-      *example:
+      *exemple:
       01  MYNAME PIC xxxxxxxxxx.    *> A 10 character string.
        
       *But counting all those x's can lead to errors, 
@@ -55,7 +55,7 @@ COBOL est un langage orienté business, ayant connu de nombreuses révisions dep
       *be re-written as:
       01 MYNAME PIC X(10).
        
-      *Here are some more examples:
+      *Voici quelques exemples:
       01  AGE             PIC      9(3).   *> A number up to 3 digits.
       01  LAST_NAME       PIC      X(10).  *> A string up to 10 characters.
        
@@ -78,7 +78,7 @@ COBOL est un langage orienté business, ayant connu de nombreuses révisions dep
           DISPLAY THE-MESSAGE.
           STOP RUN.
       
-      *The above code will output:
+      *Le code ci-dessus aura comme résultat:
       *STARTING PROGRAM
       *HELLO WORLD
       
@@ -118,7 +118,7 @@ COBOL est un langage orienté business, ayant connu de nombreuses révisions dep
              DISPLAY 'THIS IS IN FOURTH-PARA'.
    
    
-      *When you compile and execute the above program, it produces the following result: 
+      *Quand on compile et exécute le programme ci-dessus, nous aurons le résultat suivant : 
           THIS IS IN FIRST-PARA
           THIS IS IN THIRD-PARA
           THIS IS IN FOURTH-PARA
@@ -153,11 +153,11 @@ COBOL est un langage orienté business, ayant connu de nombreuses révisions dep
       STOP RUN.
 
 
-      *The above code will output:
+      *Le code ci-dessous aura comme résultat:
       THE FULL NAME IS: BOB COBB
 
 
-      *Let’s examine it to see why.
+      *Regardons ensemble pourquoi...
 
       *First, we declared all of our variables, including the one that we are creating
       *by the string command, in the DATA DIVISION.
