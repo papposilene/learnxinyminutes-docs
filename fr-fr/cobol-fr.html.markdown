@@ -39,43 +39,41 @@ COBOL est un langage orienté business, ayant connu de nombreuses révisions dep
            AUTHOR.        JOHN DOE.
            DATE-WRITTEN.  06/01/2021.
 
-      *Let's declare some variables.
-      *We do this in the WORKING-STORAGE section within the DATA DIVISION.
-      *Each data item (aka variable) with start with a level number, 
-      *then the name of the item, followed by a picture clause 
-      *describing the type of data that the variable will contain.
-      *Almost every COBOL programmer will abbreviate PICTURE as PIC.
-      *A is for alphabetic, X is for alphanumeric, and 9 is for numeric.
+      *Déclarons quelques variables.
+      *Nous le faisons dans la section WORKING-STORAGE dans la DATA DIVISION.
+      *Chaque élément de donnée (aka variable) commence avec un niveau numérique, 
+      *puis par le nom de cet élément, suivi par une clause picture 
+      *décrivant le type de donnée que la variable contiendra.
+      *Presque tout programmeur COBOL utilise l'abbréviation PIC pour PICTURE.
+      *A est pour les données alphabétiques, X pour celles alphanumériques et 9 pour celles numériques.
        
       *exemple:
-      01  MYNAME PIC xxxxxxxxxx.    *> A 10 character string.
+      01  MYNAME PIC xxxxxxxxxx.    *> Une chaîne de 10 caractères.
        
-      *But counting all those x's can lead to errors, 
-      *so the above code can, and should
-      *be re-written as:
+      *Mais compter tous ces x peut mener à des erreurs, 
+      *nous écrirons donc le code ci-dessus par le code ci-dessous
       01 MYNAME PIC X(10).
        
       *Voici quelques exemples:
-      01  AGE             PIC      9(3).   *> A number up to 3 digits.
-      01  LAST_NAME       PIC      X(10).  *> A string up to 10 characters.
+      01  AGE             PIC      9(3).   *> Un nombre jusqu'à 3 chiffres.
+      01  LAST_NAME       PIC      X(10).  *> une chaîne jusqu'à dix caractères.
        
-      *In COBOL, multiple spaces are the same as a single space, so it is common
-      *to use multiple spaces to line up your code so that it is easier for other
-      *coders to read.
-      01  inyear picture s9(7). *> S makes number signed.
-                                 *> Brackets indicate 7 repeats of 9,
-                                 *> ie a 6 digit number (not an array).
+      *En COBOL, qu'il y ait un ou plusieurs espace n'a pas d'importance, il est donc
+      *commun d'utiliser de nombreuses lignes pour écrire son code et le rendre plus agréable à lire
+      01  inyear picture s9(7). *> S indique que le nombre est signé (+ ou -).
+                                 *> Les parenthèses indiquent 7 répétitions du 9,
+                                 *> ie un nombre à 6 chiffres (et non un tableau).
 
-      *Now let's write some code. Here is a simple, Hello World program.
+      *Maintenant, écrivons un peu de COBOL. Ci=dessous un simple Hello World en COBOL.
       IDENTIFICATION DIVISION.
       PROGRAM-ID. HELLO.
       DATA DIVISION.
       WORKING-STORAGE SECTION.
-      01 THE-MESSAGE      PIC X(20).
+      01 LE-MESSAGE      PIC X(20).
       PROCEDURE DIVISION.
-          DISPLAY "STARTING PROGRAM".
-          MOVE "HELLO WORLD" TO THE-MESSAGE.
-          DISPLAY THE-MESSAGE.
+          DISPLAY "DEBUT DU PROGRAMME".
+          MOVE "HELLO WORLD" TO LE-MESSAGE.
+          DISPLAY LE-MESSAGE.
           STOP RUN.
       
       *Le code ci-dessus aura comme résultat:
@@ -84,56 +82,55 @@ COBOL est un langage orienté business, ayant connu de nombreuses révisions dep
       
 
       
-      ********COBOL can perform math***************
-      ADD 1 TO AGE GIVING NEW-AGE.
+      ********COBOL peut faire des mathématiques***************
+      ADD 1 TO AGE GIVING NOUVEL-AGE.
       SUBTRACT 1 FROM COUNT.
       DIVIDE VAR-1 INTO VAR-2 GIVING VAR-3.
       COMPUTE TOTAL-COUNT = COUNT1 PLUS COUNT2.
       
       
       *********PERFORM********************
-      *The PERFORM keyword allows you to jump to another specified section of the code,
-      *and then to return to the next executable
-      *statement once the specified section of code is completed. 
-      *You must write the full word, PERFORM, you cannot abbreviate it.
+      *Le mot-clé PERFORM vous permet de sauter à une autre section spécifiée dans le programme
+      *and alors de retourner à la prochaine directive une fois la section à laquelle vous avez sauté
+      *est achevée et a rendu son résultat. 
+      *Vous devez écrire en entier le mot, PERFORM. Il n'est pas possible d'utiliser une abbréviation.
 
       IDENTIFICATION DIVISION.
       PROGRAM-ID. HELLOCOBOL.
 
       PROCEDURE DIVISION.
          FIRST-PARA.
-             DISPLAY 'THIS IS IN FIRST-PARA'.
-         PERFORM THIRD-PARA THRU FOURTH-PARA. *>skip second-para and perfrom 3rd & 4th
-         *> then after performing third and fourth,
-         *> return here and continue the program until STOP RUN.
+             DISPLAY 'CECI EST LE PREMIER PARA'.
+         PERFORM THIRD-PARA THRU FOURTH-PARA. *>sauter le second-para et exécuter les 3 et 4e.
+         *> Une fois seulement que le 3 et 4e aient été exécutés, ,
+         *> retourner au 1er para, et terminer l'exécution jusqu'au STOP RUN.
    
          SECOND-PARA.
-             DISPLAY 'THIS IS IN SECOND-PARA'.
+             DISPLAY 'CECI EST LE SECOND-PARA'.
          STOP RUN.
    
          THIRD-PARA.
-             DISPLAY 'THIS IS IN THIRD-PARA'.
+             DISPLAY 'CECI EST LE THIRD-PARA'.
    
          FOURTH-PARA.
-             DISPLAY 'THIS IS IN FOURTH-PARA'.
+             DISPLAY 'CECI EST LE FOURTH-PARA'.
    
    
       *Quand on compile et exécute le programme ci-dessus, nous aurons le résultat suivant : 
-          THIS IS IN FIRST-PARA
-          THIS IS IN THIRD-PARA
-          THIS IS IN FOURTH-PARA
-          THIS IS IN SECOND-PARA
+          CECI EST LE FIRST-PARA
+          CECI EST LE THIRD-PARA
+          CECI EST LE FOURTH-PARA
+          CECI EST LE SECOND-PARA
           
           
-      **********Combining variables together using STRING ***********
+      **********Combiner des variables ensemble en utilisant STRING***********
       
       *Now it is time to learn about two related COBOL verbs: string and unstring.
 
-      *The string verb is used to concatenate, or put together, two or more stings.
-      *Unstring is used, not surprisingly, to separate a         
-      *string into two or more smaller strings. 
-      *It is important that you remember to use ‘delimited by’ when you
-      *are using string or unstring in your program. 
+      *Le verbe STRING est utilisé pour concaténer deux ou plusieurs chaînes.
+      *UNSTRING est utilisé pour séparer une chaîne en deux ou plusieurs chaînes
+      *Il est important de se souvenir d'utiliser ‘delimited by’ quand
+      *vous faites usage de string or unstring. 
 
       IDENTIFICATION DIVISION.
       PROGRAM-ID. LEARNING.
@@ -159,26 +156,26 @@ COBOL est un langage orienté business, ayant connu de nombreuses révisions dep
 
       *Regardons ensemble pourquoi...
 
-      *First, we declared all of our variables, including the one that we are creating
-      *by the string command, in the DATA DIVISION.
+      *D'abord, nous déclarons toutes nos variables, dont celle que nous utiliserons 
+      *pour la commande STRING dans DATA DIVISION.
 
-      *The action takes place down in the PROCEDURE DIVISION. 
-      *We start with the STRING keyword and end with END-STRING. In between we         
-      *list what we want to combine together into the larger, master variable. 
-      *Here, we are combining FIRST-NAME, a space, and LAST-NAME. 
+      *Cette action prend place dans PROCEDURE DIVISION. 
+      *Nous commençons avec le mot-clé STRING et termineons avec END-STRING. 
+      *Dans l'entre-deux, nous écrirons ce que nous voulons combiner ensemble, dans une plus grande variable. 
+      *Ici, nous combinons FIRST-NAME, une espace, et LAST-NAME. 
 
-      *The DELIMITED BY phrase that follows FIRST-NAME and 
-      *LAST-NAME tells the program how much of each variable we want to capture. 
-      *DELIMITED BY SPACE tells the program to start at the beginning, 
-      *and capture the variable until it runs into a space. 
-      *DELIMITED BY SIZE tells the program to capture the full size of the variable. 
-      *Since we have DELIMITED BY SPACE after FIRST-NAME, the GIBBERISH part is ignored. 
+      *L'élément DELIMITED BY qui suit FIRST-NAME et LAST-NAME
+      *dit au programme combien de chaque variable nous voulons conserver. 
+      *DELIMITED BY SPACE dit ensuite où commencer, 
+      *et conserve le contenu de la variable jusqu'à la première espace. 
+      *DELIMITED BY SIZE dit au programme de conserver l'intégralité de la variable. 
+      *Avec DELIMITED BY SPACE après FIRST-NAME, la partie GIBBERISH est ignorée. 
 
-      *To make this clearer, change line 10 in the above code to:
+      *Pour rendre cela plus clair, changez la ligne 10 du code ci-dessus par :
 
       STRING FIRST-NAME DELIMITED BY SIZE
 
-      *and then re-run the program. This time the output is:
+      *and relancez leprogramme. Le résultat sera alors de :
 
       THE FULL NAME IS: BOB GIBBERISH COBB
 
